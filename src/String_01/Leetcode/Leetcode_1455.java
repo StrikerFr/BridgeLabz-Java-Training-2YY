@@ -1,5 +1,6 @@
 package String_01.Leetcode;
-class Leetcode_1455 {
+
+public class Leetcode_1455 {
     public int isPrefixOfWord(String sentence, String searchWord) {
         String[] words = sentence.split(" ");
 
@@ -10,5 +11,10 @@ class Leetcode_1455 {
         }
 
         return -1;
+    }
+
+    public static void main(String[] args) {
+        Leetcode_1455 solution = new Leetcode_1455();
+        System.out.println("Prefix word index: " + solution.isPrefixOfWord("i love eating burger", "burg"));
     }
 }

@@ -1,5 +1,6 @@
 package String_01.Leetcode;
-class Leetcode_171 {
+
+public class Leetcode_171 {
     public int titleToNumber(String columnTitle) {
         int result = 0;
 
@@ -8,5 +9,10 @@ class Leetcode_171 {
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        Leetcode_171 solution = new Leetcode_171();
+        System.out.println("Column number for 'ZY': " + solution.titleToNumber("ZY"));
     }
 }
