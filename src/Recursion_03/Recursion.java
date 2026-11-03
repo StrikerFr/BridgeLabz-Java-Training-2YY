@@ -1,3 +1,5 @@
+package Recursion_03;
+
 import java.util.Scanner;
 
 public class Recursion {
@@ -14,5 +16,6 @@ public class Recursion {
         int n = sc.nextInt();
 
         System.out.println(factorial(n));
+        sc.close();
     }
 }
