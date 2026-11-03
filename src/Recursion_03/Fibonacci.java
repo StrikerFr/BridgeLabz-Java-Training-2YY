@@ -1,3 +1,5 @@
+package Recursion_03;
+
 import java.util.Scanner;
 
 public class Fibonacci {
@@ -20,5 +22,6 @@ public class Fibonacci {
         for (int i = 0; i < n; i++) {
             System.out.print(fibonacci(i) + " ");
         }
+        sc.close();
     }
 }
