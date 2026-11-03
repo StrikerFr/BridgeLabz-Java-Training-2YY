@@ -1,6 +1,6 @@
 package String_01.Leetcode;
 
-class Leetcode_387 {
+public class Leetcode_387 {
     public int firstUniqChar(String s) {
 
         int[] freq = new int[26];
@@ -16,5 +16,10 @@ class Leetcode_387 {
         }
 
         return -1;
+    }
+
+    public static void main(String[] args) {
+        Leetcode_387 solution = new Leetcode_387();
+        System.out.println("First unique character index in 'leetcode': " + solution.firstUniqChar("leetcode"));
     }
 }

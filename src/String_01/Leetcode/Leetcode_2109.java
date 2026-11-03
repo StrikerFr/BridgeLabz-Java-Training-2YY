@@ -1,6 +1,6 @@
 package String_01.Leetcode;
 
-class Leetcode_2109 {
+public class Leetcode_2109 {
     public String addSpaces(String s, int[] spaces) {
 
         StringBuilder ans = new StringBuilder();
@@ -18,5 +18,12 @@ class Leetcode_2109 {
         }
 
         return ans.toString();
+    }
+
+    public static void main(String[] args) {
+        Leetcode_2109 solution = new Leetcode_2109();
+        String s = "LeetcodeHelpsMeLearn";
+        int[] spaces = {8, 13, 15};
+        System.out.println("With spaces: " + solution.addSpaces(s, spaces));
     }
 }

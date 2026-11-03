@@ -1,6 +1,6 @@
 package String_01.Leetcode;
 
-class Leetcode_345 {
+public class Leetcode_345 {
     public String reverseVowels(String s) {
         char[] a = s.toCharArray();
         int left = 0;
@@ -22,5 +22,10 @@ class Leetcode_345 {
             }
         }
         return new String(a);
+    }
+
+    public static void main(String[] args) {
+        Leetcode_345 solution = new Leetcode_345();
+        System.out.println("Reverse vowels of 'IceCreAm': " + solution.reverseVowels("IceCreAm"));
     }
 }
