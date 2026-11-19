@@ -14,10 +14,10 @@ public class StackBasics {
         s.push(40);
 
         System.out.println(s);
-
         System.out.println("peek: " + s.peek());
         System.out.println("pop: " + s.pop());
         System.out.println("after Pop: " + s);
         System.out.println("is Empty: " + s.isEmpty());
+
     }
 }
