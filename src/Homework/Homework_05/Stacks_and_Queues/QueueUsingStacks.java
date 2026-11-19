@@ -1,96 +1,54 @@
 package Homework.Homework_05.Stacks_and_Queues;
 
-import java.util.NoSuchElementException;
 import java.util.Stack;
 
-/**
- * Problem 1: Implement a Queue Using Stacks
- *
- * Description: Design a queue using two stacks such that enqueue and dequeue
- * operations are performed efficiently.
- *
- * Approach:
- * - Use 'inStack' for enqueue operations.
- * - Use 'outStack' for dequeue and peek operations.
- * - Transfer elements from inStack to outStack only when outStack is empty (amortized O(1)).
- */
 public class QueueUsingStacks {
+    Stack<Integer> s1 = new Stack<>();
+    Stack<Integer> s2 = new Stack<>();
 
-    private final Stack<Integer> inStack;
-    private final Stack<Integer> outStack;
-
-    public QueueUsingStacks() {
-        inStack = new Stack<>();
-        outStack = new Stack<>();
+    public void push(int x) {
+        s1.push(x);
     }
 
-    // Enqueue an element to the rear of the queue - O(1)
-    public void enqueue(int x) {
-        inStack.push(x);
-    }
-
-    // Helper: transfer elements from inStack to outStack if outStack is empty
-    private void transferIfEmpty() {
-        if (outStack.isEmpty()) {
-            while (!inStack.isEmpty()) {
-                outStack.push(inStack.pop());
+    public int pop() {
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
             }
         }
-    }
-
-    // Dequeue an element from the front of the queue - Amortized O(1)
-    public int dequeue() {
-        transferIfEmpty();
-        if (outStack.isEmpty()) {
-            throw new NoSuchElementException("Queue is empty");
+        if (s2.isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
         }
-        return outStack.pop();
+        return s2.pop();
     }
 
-    // Get the front element without removing it - Amortized O(1)
     public int peek() {
-        transferIfEmpty();
-        if (outStack.isEmpty()) {
-            throw new NoSuchElementException("Queue is empty");
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
         }
-        return outStack.peek();
+        if (s2.isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        return s2.peek();
     }
 
-    // Check if the queue is empty - O(1)
     public boolean isEmpty() {
-        return inStack.isEmpty() && outStack.isEmpty();
-    }
-
-    // Get the number of elements in the queue - O(1)
-    public int size() {
-        return inStack.size() + outStack.size();
+        return s1.isEmpty() && s2.isEmpty();
     }
 
     public static void main(String[] args) {
-        System.out.println("=== Problem 1: Queue Using Two Stacks ===");
-
         QueueUsingStacks q = new QueueUsingStacks();
+        q.push(10);
+        q.push(20);
+        q.push(30);
 
-        System.out.println("Enqueuing: 10, 20, 30");
-        q.enqueue(10);
-        q.enqueue(20);
-        q.enqueue(30);
-
-        System.out.println("Current Front (peek): " + q.peek()); // 10
-        System.out.println("Queue size: " + q.size()); // 3
-
-        System.out.println("Dequeued: " + q.dequeue()); // 10
-        System.out.println("Dequeued: " + q.dequeue()); // 20
-
-        System.out.println("Enqueuing: 40, 50");
-        q.enqueue(40);
-        q.enqueue(50);
-
-        System.out.println("Current Front (peek): " + q.peek()); // 30
-        System.out.println("Dequeued: " + q.dequeue()); // 30
-        System.out.println("Dequeued: " + q.dequeue()); // 40
-        System.out.println("Dequeued: " + q.dequeue()); // 50
-
-        System.out.println("Is queue empty? " + q.isEmpty()); // true
+        System.out.println(q.pop());
+        System.out.println(q.peek());
+        System.out.println(q.pop());
+        System.out.println(q.isEmpty());
     }
 }

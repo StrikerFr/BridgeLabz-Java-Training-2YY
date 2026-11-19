@@ -2,76 +2,39 @@ package Homework.Homework_05.Stacks_and_Queues;
 
 import java.util.Stack;
 
-/**
- * Problem 2: Sort a Stack Using Recursion
- *
- * Description: Given a stack, sort its elements in ascending order using recursion
- * (without using any external loops or helper data structures).
- *
- * Approach:
- * 1. Base case: If stack is empty, return.
- * 2. Pop top element, recursively sort the remaining stack.
- * 3. Insert the popped element back into the sorted stack at its correct position.
- */
 public class SortStackRecursion {
-
-    // Recursively sort the stack
-    public static void sortStack(Stack<Integer> stack) {
-        if (stack.isEmpty()) {
+    public static void sortStack(Stack<Integer> s) {
+        if (s.isEmpty()) {
             return;
         }
 
-        // Remove top element
-        int top = stack.pop();
-
-        // Recursively sort remaining stack
-        sortStack(stack);
-
-        // Insert popped element back into sorted stack
-        sortedInsert(stack, top);
+        int temp = s.pop();
+        sortStack(s);
+        insertSorted(s, temp);
     }
 
-    // Helper: Insert an element in a sorted stack such that order is maintained
-    public static void sortedInsert(Stack<Integer> stack, int element) {
-        // If stack is empty or element is greater than top, push it
-        if (stack.isEmpty() || element > stack.peek()) {
-            stack.push(element);
+    public static void insertSorted(Stack<Integer> s, int x) {
+        if (s.isEmpty() || s.peek() <= x) {
+            s.push(x);
             return;
         }
 
-        // Otherwise, pop top and recurse
-        int top = stack.pop();
-        sortedInsert(stack, element);
-
-        // Put the stored top back
-        stack.push(top);
+        int temp = s.pop();
+        insertSorted(s, x);
+        s.push(temp);
     }
 
     public static void main(String[] args) {
-        System.out.println("=== Problem 2: Sort Stack Using Recursion ===");
+        Stack<Integer> s = new Stack<>();
+        s.push(34);
+        s.push(3);
+        s.push(31);
+        s.push(98);
+        s.push(92);
+        s.push(23);
 
-        Stack<Integer> stack = new Stack<>();
-        stack.push(30);
-        stack.push(-5);
-        stack.push(18);
-        stack.push(14);
-        stack.push(-3);
-
-        System.out.println("Original Stack (bottom to top): " + stack);
-
-        sortStack(stack);
-
-        System.out.println("Sorted Stack (ascending: bottom to top): " + stack);
-
-        Stack<Integer> stack2 = new Stack<>();
-        stack2.push(5);
-        stack2.push(1);
-        stack2.push(4);
-        stack2.push(2);
-        stack2.push(3);
-
-        System.out.println("\nOriginal Stack 2: " + stack2);
-        sortStack(stack2);
-        System.out.println("Sorted Stack 2: " + stack2);
+        System.out.println("Original: " + s);
+        sortStack(s);
+        System.out.println("Sorted: " + s);
     }
 }
